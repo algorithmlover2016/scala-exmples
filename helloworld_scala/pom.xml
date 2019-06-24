@@ -18,6 +18,10 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <encoding>UTF-8</encoding>
+    <!-- equals to <encoding>UTF-8</encoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    -->
     <scala.version>2.12.8</scala.version>
     <scala.binary.version>2.12</scala.binary.version>
     <scala.compat.version>2.12</scala.compat.version>
@@ -29,7 +33,26 @@
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-library</artifactId>
       <version>${scala.version}</version>
+      <scope>compile</scope>
     </dependency>
+
+    <!--
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-compiler</artifactId>
+      <version>${scala.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    -->
+
+    <!--
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-reflect</artifactId>
+      <version>${scala.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    -->
 
     <!-- Test -->
     <dependency>
@@ -111,6 +134,9 @@
           </execution>
         </executions>
       </plugin>
+      <!--
+           create executable jar
+      -->
       <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
