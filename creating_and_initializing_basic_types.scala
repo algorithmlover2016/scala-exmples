@@ -81,6 +81,12 @@ var defaultImmutableMap = Map[Int, String](1 -> "no one will die.",
                                            "if you do not know the nature about life and death, ").concat(
                                            "you are stupid indeedy"),
                                            4 -> stringBuffer.toString,
+
+                                           // must put the strings in parentheses,
+                                           // "->" is priority over "+"
+                                           6 -> ("no matter how smart you feel you are, " +
+                                           "if you do not know the nature about life and death, " +
+                                           "you are stupid indeedy"),
                                            )
 // String has no method named "+"
 // error: ';' expected but ')' found.
