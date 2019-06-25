@@ -1,0 +1,1 @@
+rm -rf /root/test_bmr_spark/output; ${SPARK_HOME}/bin/spark-submit --class WordCount uber-spark_word_count_normal-1.0.0-snapshot.jar file:///root/test_bmr_spark/README file:///root/test_bmr_spark/output
