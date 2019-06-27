@@ -5,6 +5,9 @@
   <artifactId>spark_word_count_normal</artifactId>
   <version>1.0.0-snapshot</version>
   <name>${project.artifactId}</name>
+  <!--
+       project.artifact = ${project.groupId}:${project.artifactId}:${project.version}
+       -->
   <properties>
       <!--
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -78,6 +81,37 @@
                           <goal>single</goal>
                       </goals>
                   </execution>
+                  <execution>
+                      <id>build-WordCountYarn</id>
+                      <phase>package</phase>
+                      <goals>
+                          <goal>single</goal>
+                      </goals>
+                      <configuration>
+                          <archive>
+                              <manifest>
+                                  <mainClass>WordCountYarn.class</mainClass>
+                              </manifest>
+                          </archive>
+                          <finalName>uber-${project.artifactId}-${project.version}-WordCountYarn</finalName>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>build-WordCount</id>
+                      <phase>package</phase>
+                      <goals>
+                          <goal>single</goal>
+                      </goals>
+                      <configuration>
+                          <archive>
+                              <manifest>
+                                  <mainClass>WordCount.class</mainClass>
+                              </manifest>
+                          </archive>
+                          <finalName>uber-${project.artifactId}-${project.version}-WordCount</finalName>
+                      </configuration>
+                  </execution>
+
               </executions>
           </plugin>
           <plugin>
@@ -85,6 +119,7 @@
               <artifactId>maven-jar-plugin</artifactId>
               <version>3.1.0</version>
               <configuration>
+                  <finalName>${project.artifactId}-${project.version}-WordCount</finalName>
                   <archive>
                       <manifest>
                           <addClasspath>true</addClasspath>
@@ -92,6 +127,25 @@
                       </manifest>
                   </archive>
               </configuration>
+              <executions>
+                  <execution>
+                      <id>make-jar-WordCountYarn</id>
+                      <phase>package</phase>
+                      <goals>
+                          <goal>jar</goal>
+                      </goals>
+                      <configuration>
+                          <finalName>${project.artifactId}-${project.version}-WordCountYarn</finalName>
+                          <classifier>Yarn</classifier>
+                          <archive>
+                              <manifest>
+                                  <addClasspath>true</addClasspath>
+                                  <mainClass>WordCountYarn</mainClass>
+                              </manifest>
+                          </archive>
+                      </configuration>
+                  </execution>
+              </executions>
           </plugin>
       </plugins>
       <pluginManagement>
